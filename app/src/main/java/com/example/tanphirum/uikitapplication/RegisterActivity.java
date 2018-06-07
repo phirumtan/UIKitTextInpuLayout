@@ -1,22 +1,28 @@
 package com.example.tanphirum.uikitapplication;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private TextInputLayout mTxtInputUsername, mTxtInputPass, mTxtInputConfPass;
-    private TextInputEditText mEdtUsername, mEdtPass, mEdtConfPass;
+    private TextInputEditText mEdtUsername, mEdtPass, mEdtConfPass, mEdtPhone;
     private Button mBtnRegister;
     private String pass, confPass;
+    private Spinner mSpPnone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,9 @@ public class RegisterActivity extends AppCompatActivity {
         mEdtConfPass = findViewById(R.id.edt_conf_pass);
 
         mBtnRegister = findViewById(R.id.btn_register);
+
+        mEdtPhone = findViewById(R.id.edt_phone);
+        mSpPnone = findViewById(R.id.sp_phone);
 
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,5 +77,32 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
+        final ArrayAdapter<CharSequence> phoneAdapter = ArrayAdapter.createFromResource(this, R.array.array_phone,
+                android.R.layout.simple_spinner_item);
+        phoneAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        mSpPnone.setAdapter(phoneAdapter);
+
+        mSpPnone.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(view.getContext(), "item click =" + phoneAdapter.getItem(position), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        mEdtPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
+        if (Patterns.EMAIL_ADDRESS.matcher("").matches()) {
+
+        } else {
+
+        }
+
     }
 }
