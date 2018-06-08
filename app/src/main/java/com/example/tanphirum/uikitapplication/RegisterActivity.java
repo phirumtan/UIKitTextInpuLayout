@@ -8,7 +8,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,11 +15,14 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.tanphirum.uikitapplication.fragment.DatePickerFragment;
+import com.example.tanphirum.uikitapplication.fragment.TimePickerFragment;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private TextInputLayout mTxtInputUsername, mTxtInputPass, mTxtInputConfPass;
     private TextInputEditText mEdtUsername, mEdtPass, mEdtConfPass, mEdtPhone;
-    private Button mBtnRegister;
+    private Button mBtnRegister, mBtnDob, mBtnTime;
     private String pass, confPass;
     private Spinner mSpPnone;
 
@@ -29,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mTxtInputUsername = findViewById(R.id.txt_input_username);
+        this.mTxtInputUsername = findViewById(R.id.txt_input_username);
         mTxtInputPass = findViewById(R.id.txt_input_pass);
         mTxtInputConfPass = findViewById(R.id.txt_input_conf_pass);
 
@@ -41,6 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         mEdtPhone = findViewById(R.id.edt_phone);
         mSpPnone = findViewById(R.id.sp_phone);
+
+        mBtnDob = findViewById(R.id.btn_dob);
+        mBtnTime = findViewById(R.id.btn_time);
 
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,11 +103,31 @@ public class RegisterActivity extends AppCompatActivity {
 
         mEdtPhone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
-        if (Patterns.EMAIL_ADDRESS.matcher("").matches()) {
+        mBtnDob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerFragment dialog = new DatePickerFragment();
+                dialog.setCancelable(false);
+                dialog.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
 
-        } else {
-
-        }
-
+        mBtnTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new TimePickerFragment().show(getSupportFragmentManager(), "timePicker");
+            }
+        });
     }
+
+    public void handleDatePickerValue(int year, int month, int dayOfMonth) {
+        int localMonth = month + 1;
+         Toast.makeText(this, "date :" + dayOfMonth +"/"  + localMonth + "/" + year, Toast.LENGTH_SHORT).show();
+    }
+
+    public void handlerTimePickerValue(int hourOfDay, int minute) {
+        Toast.makeText(this, "Time :" + hourOfDay +"/"  + minute, Toast.LENGTH_SHORT).show();
+    }
+
+
 }

@@ -30,6 +30,8 @@ This volume starts with the first new Beatle song, “Free as a Bird” (based o
     <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
     <string name="phone">Phone</string>
+    <string name="dob">DOB</string>
+    <string name="time">Time</string>
 
     <string-array name="array_phone">
         <item>Home</item>
