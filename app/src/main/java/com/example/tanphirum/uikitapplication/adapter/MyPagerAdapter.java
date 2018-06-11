@@ -26,6 +26,12 @@ public class MyPagerAdapter extends PagerAdapter{
         mInflater = LayoutInflater.from(context);
     }
 
+    public MyPagerAdapter(Context context, String st) {
+        super();
+        mContext = context;
+        mInflater = LayoutInflater.from(context);
+    }
+
     @Override
     public int getCount() {
         return resValues.length;
