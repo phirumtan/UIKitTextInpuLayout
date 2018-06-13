@@ -1,13 +1,15 @@
 package com.example.tanphirum.uikitapplication.adapter;
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.tanphirum.uikitapplication.fragment.MyPagerFragment;
+import com.example.tanphirum.uikitapplication.fragment.EmptyFragment;
+import com.example.tanphirum.uikitapplication.fragment.MainFragment;
+import com.example.tanphirum.uikitapplication.fragment.RegisterFragment;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter{
-
 
     public MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -15,7 +17,20 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        return new MyPagerFragment();
+        switch (position) {
+            case 0:
+                return new RegisterFragment();
+            case 1:
+                return new MainFragment();
+            default:
+                return new EmptyFragment();
+        }
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return null;
     }
 
     @Override
