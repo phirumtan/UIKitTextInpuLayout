@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tanphirum.uikitapplication">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -22,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivity" />
         <!--
         <activity android:name=".MainActivity" />
@@ -30,7 +30,8 @@
         <activity android:name=".ViewPagerActivity"></activity>
         -->
         <!-- <activity android:name=".WebViewActivity"></activity> -->
-        <!--<activity android:name=".AsyncTaskActivity"></activity>-->
+        <!-- <activity android:name=".AsyncTaskActivity"></activity> -->
+        <!--<activity android:name=".AsyncTaskLoaderActivity"></activity>-->
     </application>
 
 </manifest>

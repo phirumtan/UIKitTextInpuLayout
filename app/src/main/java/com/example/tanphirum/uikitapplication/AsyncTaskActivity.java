@@ -1,6 +1,5 @@
 package com.example.tanphirum.uikitapplication;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 
 public class AsyncTaskActivity extends AppCompatActivity {
 
+    private static final String EXT_TEXT = "ext_text";
     private TextView mTxtLabel;
     private Button mBtnStartTask;
     private View mViewProgress;
@@ -34,10 +34,12 @@ public class AsyncTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mTask.execute("query...");
-                startActivity(new Intent(v.getContext(), MainActivity.class));
-                finish();
             }
         });
+
+        if (savedInstanceState != null) {
+            mTxtLabel.setText(savedInstanceState.getString(EXT_TEXT));
+        }
 
         //sleepThread();
     }
@@ -72,7 +74,7 @@ public class AsyncTaskActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                Thread.sleep(40000);
+                Thread.sleep(600);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -93,5 +95,11 @@ public class AsyncTaskActivity extends AppCompatActivity {
         mTask.cancel(true);
         Log.d(TAG, "onDestroy called");
         super.onDestroy();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(EXT_TEXT, mTxtLabel.getText().toString());
     }
 }
