@@ -16,7 +16,7 @@
             android:name="android.webkit.WebView.MetricsOptOut"
             android:value="true" />
 
-        <activity android:name=".AsyncTaskActivity">
+        <activity android:name=".BroadcastActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +31,15 @@
         -->
         <!-- <activity android:name=".WebViewActivity"></activity> -->
         <!-- <activity android:name=".AsyncTaskActivity"></activity> -->
-        <!--<activity android:name=".AsyncTaskLoaderActivity"></activity>-->
+        <!-- <activity android:name=".AsyncTaskLoaderActivity"></activity> -->
+        <!--<activity android:name=".BroadcastActivity"></activity>-->
+        <receiver android:name=".CustomReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                <!--<action android:name="android.intent.action.BATTERY_CHANGED" />-->
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -35,6 +35,13 @@ This volume starts with the first new Beatle song, “Free as a Bird” (based o
     <string name="start_task">Start task</string>
     <string name="label_get_data">Get data</string>
     <string name="loading">Loading...</string>
+    <string name="power_connected">Power is connected</string>
+    <string name="power_disconnected">Power is disconnected.</string>
+    <string name="local_broadcast_call">Local broadcast is call.</string>
+    <string name="receive_on">Receive on</string>
+    <string name="receive_off">Receive off</string>
+    <string name="send_custom_broadcast">Send custom broadcast</string>
+    <string name="power_changed">Power is changed</string>
 
     <string-array name="array_phone">
         <item>Home</item>
